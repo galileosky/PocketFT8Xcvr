@@ -3,10 +3,16 @@
  *
  * DISCUSSION:
  * This library implements a C++ "driver" for the resistive "Adafruit 3.5" TFT 320x480
- * Touchscreen Breakout Board w/MicroSD Socket - HX8357D" (Product 2050) touchpad.
+ * Touchscreen Breakout Board w/MicroSD Socket - HX8357D" (Product 2050) touchpad, the
+ * lowest level device-specific code for that hardware.
  *
- * Sadly, there are a couple weirdo artifacts (the X and Y axis 510 Ohm resistors,
+ * This library is largely independent of its Pocket FT8 origin.  However, it makes
+ * a few references to a couple weirdo artifacts (the X and Y axis 510 Ohm resistors,
  * XR and YR) specific to the PocketFT8Xcvr PCB and Teensy debugging support.
+ *
+ * ASSUMPTIONS:
+ *  + The four resistive touchpad signals, x-, x+, y- and y+ are connected to analog
+ *  inputs accessible through analogRead() as well as digitalWrite()
  *
  * TERMINOLOGY:
  * We frequently use the term TouchPad to refer to the resistive touchpad overlay,
@@ -21,7 +27,7 @@
 #include "NODEBUG.h"
 #include "TouchPad.h"
 
-// Define the number of microseconds to allow analog signals to settle prior to ADC sampling
+// Define the number of microseconds to allow analog signals to settle prior to ADC sampling.
 static const unsigned ADC_SETTLE_US = 20;
 
 /**

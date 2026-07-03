@@ -1,4 +1,12 @@
-
+/**
+ * SYNOPSIS:
+ *  This file implements TouchScreen class methods for calibrating the underlying TouchPad
+ *
+ * DISCUSSION:
+ *  The TouchPad class deals with obtaining raw ADC readings for a touch event.  The TouchScreen
+ *  class deals with correcting those readings for hardware manufacturing tolerances, aberrations,
+ *  and mapping the raw ADC readings into the screen's coordinate system.
+ */
 
 #include <Arduino.h>
 #include "TouchScreen.h"

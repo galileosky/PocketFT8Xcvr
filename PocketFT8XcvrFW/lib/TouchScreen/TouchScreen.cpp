@@ -31,6 +31,10 @@
  *  The TouchScreen class declares methods for serializing/deserializing the calibration data
  *  but these are implemented in TouchSerialization.cpp, not here.
  *
+ * DEPENDENCIES:
+ *  + Arduino environment
+ *  + Teensy edition of the Adafruit graphics library, HX8357_t3n
+ *
  * ATTRIBUTION:
  *  Original implementation by Jim Conrad with crucial guidance from CoPilot.  Say what you want,
  *  but the damn thing was more useful than some humans I've worked with over the past 50 years.
@@ -45,7 +49,6 @@
 #include <cmath>
 #include "HX8357_t3n.h"
 #include "TouchScreen.h"
-#include "hwdefs.h"
 #include "TouchPad.h"
 #include "NODEBUG.h"
 

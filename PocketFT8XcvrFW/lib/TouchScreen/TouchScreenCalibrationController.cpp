@@ -1,4 +1,15 @@
-
+/**
+ * SYNOPSIS:
+ *  TouchScreen class method for supervising the TouchScreen calibration process
+ *
+ * DISCUSSION:
+ *  Calibration entails asking the user to touch each of nine displayed graphical targets.
+ *  Following calibration, the supervisor displays a menu of choices for the user:
+ *    + OK - Calibration completed
+ *    + TEST - Test the calibration by displaying touch locations
+ *    + CANCEL - Stop calibration
+ *
+ */
 #include <TouchScreen.h>
 #include <AGUI.h>
 #include <Arduino.h>
