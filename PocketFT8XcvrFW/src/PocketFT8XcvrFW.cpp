@@ -506,7 +506,7 @@ FLASHMEM void loop() {
             setSyncProvider(getTeensy3Time);
             DPRINTF("hour():minute():second() = %02u:%02u:%02u, timeStatus()=%u, getTeensy3Time()=%lu\n", hour(), minute(), second(), timeStatus(), getTeensy3Time());
 
-            // Record the locator gridsquare for logging
+            // Record the locator grid square for logging
             set_Station_Coordinates(thisStation.getLocator());
 
             // Update date/time in the UI
