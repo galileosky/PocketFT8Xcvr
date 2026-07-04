@@ -80,6 +80,7 @@
 #include <SPI.h>
 #include <TimeLib.h>
 #include <gfxfont.h>
+#include <MTP_Teensy.h>
 
 #include "AListBox.h"
 #include "Config.h"
@@ -257,6 +258,10 @@ FLASHMEM void setup(void) {
     if (!SD.begin(BUILTIN_SDCARD)) {
         DPRINTF("ERROR:  Unable to access SD card\n");
     }
+
+    // Make the SD card available to host computer through USB Media Transfer Protocol (MTP)
+    MTP.begin();
+    MTP.addFilesystem(SD, "PocketFT8");
 
     // Get the UI running
     ui.begin();
@@ -501,7 +506,7 @@ FLASHMEM void loop() {
             setSyncProvider(getTeensy3Time);
             DPRINTF("hour():minute():second() = %02u:%02u:%02u, timeStatus()=%u, getTeensy3Time()=%lu\n", hour(), minute(), second(), timeStatus(), getTeensy3Time());
 
-            // Record the locator gridsquare for logging
+            // Record the locator grid square for logging
             set_Station_Coordinates(thisStation.getLocator());
 
             // Update date/time in the UI
@@ -515,6 +520,9 @@ FLASHMEM void loop() {
 
     // Service the Timer inventory
     Timer::serviceTimers();
+
+    // Service the USB Media Transfer Protocol (MTP) access to SD drive
+    MTP.loop();
 
     // Update flags when a new timeslot begins.
     update_synchronization();
